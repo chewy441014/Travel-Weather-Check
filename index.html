@@ -6,17 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Travel Weather Check</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"/>
-    <link rel="stylesheet" href="./assets/style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
 </head>
 
 <body>
-    <nav>
-
+    <nav class="jumbotron">
+        <h1>Weather Dashboard</h1>
     </nav>
-    <main>
-
+    <main class="d-flex mx-4 my-2">
+        <aside class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Search For A City: </h5>
+                    <input id="searchInput">
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Austin</li>
+                    <li class="list-group-item">San Antonio</li>
+                    <li class="list-group-item">Houston</li>
+                    <li class="list-group-item">Dallas</li>
+                </ul>
+            </div>
+        </aside>
+        <section class="col-9">
+            <!-- Results Shown Here -->
+            <!-- Default Results Show Houston -->
+            <div class="row">
+                <div class="card" style="width: 100%" id="card0">
+                    <div class="card-body">
+                        <h5 class="card-title">Houston</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Date: 10/5/22</li>
+                        <li class="list-group-item">Sunny</li>
+                        <li class="list-group-item">Temp: Hot</li>
+                        <li class="list-group-item">Wind: None</li>
+                        <li class="list-group-item">Humidity: 100%</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row" id="forecast">
+                <div class="card" id="card1">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Date: 10/5/22</li>
+                        <li class="list-group-item">Sunny</li>
+                        <li class="list-group-item">Temp: Hot</li>
+                        <li class="list-group-item">Wind: None</li>
+                        <li class="list-group-item">Humidity: 100%</li>
+                    </ul>
+                </div>
+                <div class="card" id="card2">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Date: 10/5/22</li>
+                        <li class="list-group-item">Sunny</li>
+                        <li class="list-group-item">Temp: Hot</li>
+                        <li class="list-group-item">Wind: None</li>
+                        <li class="list-group-item">Humidity: 100%</li>
+                    </ul>
+                </div>
+                <div class="card" id="card3">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Date: 10/5/22</li>
+                        <li class="list-group-item">Sunny</li>
+                        <li class="list-group-item">Temp: Hot</li>
+                        <li class="list-group-item">Wind: None</li>
+                        <li class="list-group-item">Humidity: 100%</li>
+                    </ul>
+                </div>
+                <div class="card" id="card4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Date: 10/5/22</li>
+                        <li class="list-group-item">Sunny</li>
+                        <li class="list-group-item">Temp: Hot</li>
+                        <li class="list-group-item">Wind: None</li>
+                        <li class="list-group-item">Humidity: 100%</li>
+                    </ul>
+                </div>
+                <div class="card" id="card5">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Date: 10/5/22</li>
+                        <li class="list-group-item">Sunny</li>
+                        <li class="list-group-item">Temp: Hot</li>
+                        <li class="list-group-item">Wind: None</li>
+                        <li class="list-group-item">Humidity: 100%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
