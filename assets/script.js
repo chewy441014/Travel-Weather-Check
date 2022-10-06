@@ -40,13 +40,13 @@ function getForecast(lat, lon) {
 function showForecast() {
     // console.log('showing weather data on the bottom');
     // weatherData.list[weatherInd[i]].dt_txt // = '2022-10-10 12:00:00'
-    // url = 'http://openweathermap.org/img/wn/'+ weatherData.list[weatherInd[i]].weather[0].icon + '@2x.png // icon
+    // url = 'https://openweathermap.org/img/wn/'+ weatherData.list[weatherInd[i]].weather[0].icon + '@2x.png // icon
     // weatherData.list[weatherInd[i]].main.temp - 273.15 // temp in C
     // weatherData.list[weatherInd[i]].main.humidity // humidity as an integer < 100
     // weatherData.list[weatherInd[i]].wind.speed // wind speed
     for (let i = 1; i < 6; i ++) { //update the five cards below the first
         var myCard = $(`#card${i}`).find("li");
-        var url = 'http://openweathermap.org/img/wn/'+ weatherData.list[weatherInd[i-1]].weather[0].icon + '@2x.png' // icon
+        var url = 'https://openweathermap.org/img/wn/'+ weatherData.list[weatherInd[i-1]].weather[0].icon + '@2x.png' // icon
         myCard[0].textContent = weatherData.list[weatherInd[i-1]].dt_txt;
         myCard[1].innerHTML = '<img src="' + url + '" alt="' + weatherData.list[weatherInd[i-1]].weather[0].description + '" >';
         myCard[2].textContent = "Temp: " + (Math.round((weatherData.list[weatherInd[i-1]].main.temp - 273.15)*100)/100) + " C";
@@ -76,7 +76,7 @@ function showCurWeather () {
     var myTitle = myCard.find("h5");
     myTitle[0].textContent = curWeather.name;
     var myList = myCard.find("li");
-    var url = 'http://openweathermap.org/img/wn/'+ curWeather.weather[0].icon + '@2x.png' // icon
+    var url = 'https://openweathermap.org/img/wn/'+ curWeather.weather[0].icon + '@2x.png' // icon
     myList[0].textContent = Date().slice(0,15);
     myList[1].innerHTML = '<img src="' + url + '" alt="' + curWeather.weather[0].description + '" >';
     myList[2].textContent = "Temp: " + (Math.round((curWeather.main.temp - 273.15)*100)/100) + " C";
@@ -85,8 +85,8 @@ function showCurWeather () {
 }
 
 function getLatLonCity (cityName) {
-    //http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-    var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=e055eaf747d060c6746853339afd2bb7';
+    //https://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+    var requestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=e055eaf747d060c6746853339afd2bb7';
     $.ajax({
         url: requestUrl, 
         method: 'GET',
