@@ -1,7 +1,6 @@
 // declare global variables
 var weatherData;
 var curWeather;
-var weatherInd = [3, 11, 19, 27, 35];
 var searchButton = $('#searchButton');
 var searchInput = $('#searchInput');
 var historyEl = $('#historyTag');
@@ -13,6 +12,7 @@ function onLoad() {
     getAllWeather(29.760427, -95.369804);
     // set search button event listener
     searchButton.on("click", searchHandler);
+    searchInput.keypress(searchEnter);
     loadLocalStorage();
     loadHistory();
 }
@@ -32,6 +32,7 @@ function getForecast(lat, lon) {
         method: 'GET',
     }).then( function (response) {
         // console.log('AJAX Response \n-------------');
+        //console.log(response);
         weatherData = response;
         showForecast();
     })
@@ -44,14 +45,17 @@ function showForecast() {
     // weatherData.list[weatherInd[i]].main.temp - 273.15 // temp in C
     // weatherData.list[weatherInd[i]].main.humidity // humidity as an integer < 100
     // weatherData.list[weatherInd[i]].wind.speed // wind speed
-    for (let i = 1; i < 6; i ++) { //update the five cards below the first
-        var myCard = $(`#card${i}`).find("li");
-        var url = 'https://openweathermap.org/img/wn/'+ weatherData.list[weatherInd[i-1]].weather[0].icon + '@2x.png' // icon
-        myCard[0].textContent = weatherData.list[weatherInd[i-1]].dt_txt;
-        myCard[1].innerHTML = '<img src="' + url + '" alt="' + weatherData.list[weatherInd[i-1]].weather[0].description + '" >';
-        myCard[2].textContent = "Temp: " + (Math.round((weatherData.list[weatherInd[i-1]].main.temp - 273.15)*100)/100) + " C";
-        myCard[3].textContent = "Wind: " + weatherData.list[weatherInd[i-1]].wind.speed + " m/s";
-        myCard[4].textContent = "Humidity: " + weatherData.list[weatherInd[i-1]].main.humidity + "%";
+    // find the five weather data list entries for 3PM Thanks IAN
+    var smallWeatherData = weatherData.list.filter((element) => element.dt_txt.includes("15:00:00"));
+    console.log(smallWeatherData);
+    for (let i = 0; i < 5; i ++) { //update the five cards below the first
+        var myCard = $(`#card${i+1}`).find("li");
+        var url = 'https://openweathermap.org/img/wn/'+ smallWeatherData[i].weather[0].icon + '@2x.png' // icon
+        myCard[0].textContent = smallWeatherData[i].dt_txt.slice(0,10);
+        myCard[1].innerHTML = '<img src="' + url + '" alt="' + smallWeatherData[i].weather[0].description + '" >';
+        myCard[2].textContent = "Temp: " + (Math.round((smallWeatherData[i].main.temp - 273.15)*100)/100) + " C";
+        myCard[3].textContent = "Wind: " + smallWeatherData[i].wind.speed + " m/s";
+        myCard[4].textContent = "Humidity: " + smallWeatherData[i].main.humidity + "%";
     }
 }
 
@@ -113,6 +117,12 @@ function searchHandler () {
     }
 }
 
+function searchEnter (event) {
+    if (event.keyCode === 13) {
+        searchHandler();
+    }
+}
+
 function loadLocalStorage () {
     if (JSON.parse(localStorage.getItem("historyArr"))) {
         // if there is already a history object in local storage then set the historyArr equal to it's value
@@ -150,6 +160,7 @@ function loadHistory () {
 }
 
 function switchFocus (event) {
+    event.preventDefault();
     var cityName = $(event.target).text();
     getLatLonCity(cityName);
 }
